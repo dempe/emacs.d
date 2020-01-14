@@ -142,18 +142,18 @@
   (setq
    helm-always-two-windows t
    helm-split-window-default-side 'left)
-  (define-key my-leader-map "c" 'helm-M-x))
+  (define-key my-leader-map "c" 'helm-M-x)
 
-(use-package helm-flx
+	(use-package helm-flx
   :config
   (helm-flx-mode 1)
   (setq helm-flx-for-helm-find-files t
         helm-flx-for-helm-locate t))
 
-;; needs more setup. does not work.
-(use-package helm-fuzzier
-  :config
-  (helm-fuzzier-mode 1))
+  ;; needs more setup. does not work.
+  (use-package helm-fuzzier
+    :config
+    (helm-fuzzier-mode 1)))
 
 (use-package ido-completing-read+
   :init
