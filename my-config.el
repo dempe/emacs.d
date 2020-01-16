@@ -22,6 +22,8 @@
 (setq inhibit-startup-screen t)
 (setq show-paren-mode t)
 (setq tool-bar-mode nil)
+(setq menu-bar-mode nil)
+(setq blink-cursor-mode nil)
 (put 'narrow-to-region 'disabled nil)
 
 ;; Set transparency
@@ -73,12 +75,49 @@
   :config
   (evil-mode 1)
 
-  (dolist (mode
-            '(git-rebase-mode
-              flycheck-error-list-mode
-              osx-dictionary-mode
-              term-mode))
-  (add-to-list 'evil-emacs-state-modes mode))
+  (add-to-list 'evil-emacs-state-modes 'git-rebase-mode)
+  (add-to-list 'evil-emacs-state-modes 'flycheck-error-list-mode)
+  (add-to-list 'evil-emacs-state-modes 'term-mode)
+  (add-to-list 'evil-emacs-state-modes 'osx-dictionary-mode)
+  (add-to-list 'evil-emacs-state-modes 'recentf-dialog)
+
+	(evil-add-hjkl-bindings osx-dictionary-mode-map 'emacs
+    (kbd "0")       'evil-beginning-of-line
+    (kbd "$")       'evil-end-of-line
+    (kbd "/")       'evil-search-forward
+    (kbd "b")       'evil-backward-word-begin
+    (kbd "B")       'evil-backward-WORD-begin
+    (kbd "E")       'evil-forward-WORD-end
+    (kbd "e")       'evil-forward-word-end
+    (kbd "g_")      'evil-last-non-blank
+    (kbd "gg")      'evil-goto-first-line
+    (kbd "G")       'evil-goto-last-line
+    (kbd "n")       'evil-search-next
+    (kbd "N")       'evil-search-previous
+    (kbd "W")       'evil-forward-WORD-begin
+    (kbd "w")       'evil-forward-word-begin
+    (kbd "C-d")     'evil-scroll-down
+    (kbd "C-u")     'evil-scroll-up)
+
+  (evil-add-hjkl-bindings recentf-dialog-map 'emacs
+    (kbd "0")       'evil-beginning-of-line
+    (kbd "$")       'evil-end-of-line
+    (kbd "/")       'evil-search-forward
+    (kbd "b")       'evil-backward-word-begin
+    (kbd "B")       'evil-backward-WORD-begin
+    (kbd "E")       'evil-forward-WORD-end
+    (kbd "e")       'evil-forward-word-end
+    (kbd "g_")      'evil-last-non-blank
+    (kbd "gg")      'evil-goto-first-line
+    (kbd "G")       'evil-goto-last-line
+    (kbd "n")       'evil-search-next
+    (kbd "N")       'evil-search-previous
+    (kbd "W")       'evil-forward-WORD-begin
+    (kbd "w")       'evil-forward-word-begin
+    (kbd "C-d")     'evil-scroll-down
+    (kbd "C-u")     'evil-scroll-up)
+
+
 
   (setq evil-search-wrap t
         evil-regexp-search t)
@@ -125,7 +164,7 @@
 (use-package ace-jump-mode
   :after evil                                 ; Should make this order-agnostic, but this does not appear to work
   :init
-  (define-key my-leader-map "aj" 'ace-jump-mode)  
+  (define-key my-leader-map "aj" 'ace-jump-mode)
 
 (use-package flycheck
   :diminish
@@ -144,16 +183,16 @@
    helm-split-window-default-side 'left)
   (define-key my-leader-map "c" 'helm-M-x)
 
-	(use-package helm-flx
-  :config
-  (helm-flx-mode 1)
-  (setq helm-flx-for-helm-find-files t
-        helm-flx-for-helm-locate t))
+  (use-package helm-flx
+    :config
+    (helm-flx-mode 1)
+    (setq helm-flx-for-helm-find-files t
+          helm-flx-for-helm-locate t))
 
   ;; needs more setup. does not work.
   (use-package helm-fuzzier
     :config
-    (helm-fuzzier-mode 1)))
+    (helm-fuzzier-mode 1))))
 
 (use-package ido-completing-read+
   :init
