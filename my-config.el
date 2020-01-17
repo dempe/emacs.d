@@ -24,6 +24,13 @@
 (setq tool-bar-mode nil)
 (setq menu-bar-mode nil)
 (setq blink-cursor-mode nil)
+(setq electric-pair-mode t)
+
+;; Setup tabs
+(setq electric-indent-mode t)
+(setq-default indent-tabs-mode nil)
+(setq tab-width 2)
+
 (put 'narrow-to-region 'disabled nil)
 
 ;; Set transparency
@@ -33,6 +40,7 @@
 (scroll-bar-mode -1)                          ; Hide scrollbars
 (load-file "~/.emacs.d/custom-functions.el")  ; Load helper functions
 (load-file "~/.emacs.d/journal-functions.el")  ; Load helper functions for journaling
+
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~ PACKAGE CONFIGURATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -117,8 +125,6 @@
     (kbd "C-d")     'evil-scroll-down
     (kbd "C-u")     'evil-scroll-up)
 
-
-
   (setq evil-search-wrap t
         evil-regexp-search t)
   (setq evil-want-C-u-scroll t)
@@ -134,6 +140,9 @@
   (define-key evil-normal-state-map "," 'evil-repeat-find-char-reverse)
   (define-key evil-normal-state-map (kbd "SPC") my-leader-map)
 
+  ;; The default function bound to `m` go to middle of screen is not useful, so bind it to something useful (like macro execution).
+  (define-key evil-normal-state-map "m" 'evil-execute-macro)
+
   (use-package evil-commentary
     :diminish
     :config
@@ -144,7 +153,7 @@
     :after magit
     :diminish
     :config
-    (evil-define-key evil-magit-state magit-mode-map "?" 'evil-search-backward))
+    (evil-define-key evil-magit-state magit-mode-map "?" 'evil-search-backward)) ; Magit already has `h` for help, so use `?` for its normal function
 
   (use-package evil-mc
     :diminish
