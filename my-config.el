@@ -298,6 +298,9 @@
 ;;(define-key my-leader-map "ck" 'kill-compilation)
 ;;(define-key my-leader-map "cr" 'recompile)
 
+;; dired ----------------------------------------------------------------------
+(define-key my-leader-map "d" 'dired-mode)
+
 ;; files ----------------------------------------------------------------------
 (define-key my-leader-map "fD" 'spacemacs/delete-current-buffer-file)
 (define-key my-leader-map "fS" 'evil-write-all)
@@ -367,12 +370,6 @@
 (define-key my-leader-map "nr" 'narrow-to-region)
 (define-key my-leader-map "nw" 'widen)
 
-;; navigation/jumping ---------------------------------------------------------
-(define-key my-leader-map "j0" 'spacemacs/push-mark-and-goto-beginning-of-line)
-(define-key my-leader-map "j$" 'spacemacs/push-mark-and-goto-end-of-line)
-(define-key my-leader-map "jf" 'find-function)
-(define-key my-leader-map "jv" 'find-variable)
-
 ;; org-mode --------------------------------------------------------------------
 (define-key my-leader-map "ob" 'org-backward-heading-same-level)
 (define-key my-leader-map "ocb" 'cld/insert-org-code-block)
@@ -383,6 +380,7 @@
 (define-key my-leader-map "oem" 'cld/toggle-org-emphasis-markers)
 (define-key my-leader-map "of" 'org-forward-heading-same-level)
 (define-key my-leader-map "oi" 'cld/org-insert-header)
+(define-key my-leader-map "oI" 'cld/org-insert-header-above)
 (define-key my-leader-map "ons" 'cld/org-insert-new-subheader)
 (define-key my-leader-map "oph" 'cld/org-promote-header)
 (define-key my-leader-map "ops" 'org-promote-subtree)

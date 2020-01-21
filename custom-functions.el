@@ -87,12 +87,17 @@
 	(org-do-demote)
 	(end-of-line))
 
-;; When would you ever *not* want to put a space after the *?
+(defun cld/org-insert-header-above ()
+	"Insert new header above followed by a space."
+	(interactive)
+  (org-insert-heading)
+  (evil-insert-state))
+
 (defun cld/org-insert-header ()
 	"Insert new header below followed by a space."
 	(interactive)
   (org-insert-heading-respect-content)
-	(insert " "))
+  (evil-insert-state))
 
 ;; Can't seem to find a native `org-mode` function that does this.
 (defun cld/org-insert-new-subheader ()
