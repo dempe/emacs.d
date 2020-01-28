@@ -8,17 +8,18 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-	 (quote
-		("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
+   (quote
+    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
+ '(electric-pair-mode t)
  '(package-selected-packages
-	 (quote
-		(evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode ido-completing-read+ desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme helm-fuzzier helm-flx diminish use-package evil-mc paradox rainbow-delimiters anzu flycheck swiper magit ace-jump-mode helm which-key evil)))
+   (quote
+    (evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode ido-completing-read+ desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme helm-fuzzier helm-flx diminish use-package evil-mc paradox rainbow-delimiters anzu flycheck swiper magit ace-jump-mode helm which-key evil)))
  '(safe-local-variable-values
-	 (quote
-		((org-todo-keyword-faces
-			("GOOD" . "green")
-			("OKAY" . "yellow")
-			("BAD" . "red"))))))
+   (quote
+    ((org-todo-keyword-faces
+      ("GOOD" . "green")
+      ("OKAY" . "yellow")
+      ("BAD" . "red"))))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

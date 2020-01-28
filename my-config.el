@@ -370,6 +370,9 @@
 (define-key my-leader-map "nr" 'narrow-to-region)
 (define-key my-leader-map "nw" 'widen)
 
+;; open  -----------------------------------------------------------------------
+(define-key my-leader-map "til" 'cld/open-til)
+
 ;; org-mode --------------------------------------------------------------------
 (define-key my-leader-map "ob" 'org-backward-heading-same-level)
 (define-key my-leader-map "ocb" 'cld/insert-org-code-block)

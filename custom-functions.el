@@ -81,6 +81,11 @@
 	(interactive)
 	(insert " "))
 
+(defun cld/open-til ()
+  "Open `til.org`."
+  (interactive)
+  (find-file "~/workspace/org-mode/personal/til.org"))
+
 (defun cld/org-demote-header ()
 	"Demote a header and move to EOL."
 	(interactive)
@@ -97,7 +102,7 @@
 	"Insert new header below followed by a space."
 	(interactive)
   (org-insert-heading-respect-content)
-  (evil-insert-state))
+  (insert " "))
 
 ;; Can't seem to find a native `org-mode` function that does this.
 (defun cld/org-insert-new-subheader ()
