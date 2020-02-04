@@ -38,7 +38,7 @@
 ;; (add-to-list 'default-frame-alist '(alpha 85 50))
 
 (scroll-bar-mode -1)                          ; Hide scrollbars
-(load-file "~/.emacs.d/custom-functions.el")  ; Load helper functions
+(load-file "~/.emacs.d/helper-functions.el")  ; Load helper functions
 (load-file "~/.emacs.d/journal-functions.el")  ; Load helper functions for journaling
 
 
@@ -64,6 +64,7 @@
   :ensure t
   :demand t
   :config
+  ;; (setq darkroom-margins .25)
   (setq darkroom-text-scale-increase 1))
 
 (use-package desktop+

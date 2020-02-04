@@ -13,7 +13,7 @@
  '(electric-pair-mode t)
  '(package-selected-packages
    (quote
-    (evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode ido-completing-read+ desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme helm-fuzzier helm-flx diminish use-package evil-mc paradox rainbow-delimiters anzu flycheck swiper magit ace-jump-mode helm which-key evil)))
+    (poker evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode ido-completing-read+ desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme helm-fuzzier helm-flx diminish use-package evil-mc paradox rainbow-delimiters anzu flycheck swiper magit ace-jump-mode helm which-key evil)))
  '(safe-local-variable-values
    (quote
     ((org-todo-keyword-faces
