@@ -104,6 +104,13 @@
   (org-insert-heading-respect-content)
   (insert " "))
 
+(defun cld/org-insert-checklist-item ()
+  "Insert new checklist item."
+  (interactive)
+  (end-of-line)
+  (insert "\n  - [ ] ")
+  (evil-insert-state))
+
 ;; Can't seem to find a native `org-mode` function that does this.
 (defun cld/org-insert-new-subheader ()
 	"Insert new subheader below followed by a space."
