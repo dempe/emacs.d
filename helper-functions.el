@@ -105,11 +105,30 @@
   (insert " "))
 
 (defun cld/org-insert-checklist-item ()
-  "Insert new checklist item."
   (interactive)
   (end-of-line)
   (insert "\n  - [ ] ")
   (evil-insert-state))
+
+(defun cld/org-insert-daily ()
+  (interactive)
+  (beginning-of-line)
+  (insert "* ")
+
+  ;; Insert tomorrow's date
+  (insert
+   (format-time-string
+    "%a %Y-%m-%d"
+    (time-add
+     (current-time)
+     (* 24 3600))))
+
+  ;; Insert progress indicators
+  (insert " [/] [%]\n")
+	(forward-line -1)
+
+  ;; Start new checklist
+  (cld/org-insert-checklist-item))
 
 ;; Can't seem to find a native `org-mode` function that does this.
 (defun cld/org-insert-new-subheader ()
