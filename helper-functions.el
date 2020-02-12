@@ -84,7 +84,7 @@
 (defun cld/open-til ()
   "Open `til.org`."
   (interactive)
-  (find-file "~/workspace/org-mode/personal/til.org"))
+  (find-file "~/Dropbox/org-mode/personal/til.org"))
 
 (defun cld/org-demote-header ()
 	"Demote a header and move to EOL."
