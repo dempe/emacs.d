@@ -292,9 +292,11 @@
 (define-key my-leader-map "oes" 'org-edit-special)
 (define-key my-leader-map "oem" 'cld/toggle-org-emphasis-markers)
 (define-key my-leader-map "of" 'org-forward-heading-same-level)
+(define-key my-leader-map "oha" 'outline-hide-body)                ;; "outline-hide-all"
 (define-key my-leader-map "oic" 'cld/org-insert-checklist-item)
 (define-key my-leader-map "oid" 'cld/org-insert-daily)
 (define-key my-leader-map "oih" 'cld/org-insert-header)
+(define-key my-leader-map "oil" 'org-insert-link)
 (define-key my-leader-map "oIh" 'cld/org-insert-header-above)
 (define-key my-leader-map "ons" 'cld/org-insert-new-subheader)
 (define-key my-leader-map "oph" 'cld/org-promote-header)
