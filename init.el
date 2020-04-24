@@ -55,10 +55,10 @@
 
 (load-file "~/.emacs.d/evil.el")              ; Load Evil configurations
 
-(use-package anzu
-  :diminish
-  :config
-  (global-anzu-mode 1))
+(use-package ace-jump-mode
+  :after evil                                 ; Should make this order-agnostic, but this does not appear to work
+  :init
+  (define-key my-leader-map "aj" 'ace-jump-mode))
 
 (use-package darkroom
   :ensure t
@@ -79,11 +79,6 @@
   (diminish 'undo-tree-mode)
   (diminish 'eldoc-mode))
 
-(use-package ace-jump-mode
-  :after evil                                 ; Should make this order-agnostic, but this does not appear to work
-  :init
-  (define-key my-leader-map "aj" 'ace-jump-mode)
-
 (use-package flycheck
   :diminish
   :config
@@ -93,32 +88,31 @@
 
 ;; Bind <SPC c> to the M-x function (with Helm).
 ;; I'm using c, because I cannot get <SPC SPC> (what Spacemacs uses) to work.
-;;(define-key my-leader-map "c" 'execute-extended-command)
+(define-key my-leader-map "c" 'execute-extended-command)
 (use-package helm
   :config
+  (helm-mode 1)
   (setq
    helm-always-two-windows t
    helm-split-window-default-side 'left)
   (define-key my-leader-map "c" 'helm-M-x)
 
+  ;; This package implements intelligent helm fuzzy sorting, provided by flx.
   (use-package helm-flx
     :config
     (helm-flx-mode 1)
     (setq helm-flx-for-helm-find-files t
-          helm-flx-for-helm-locate t))
+          helm-flx-for-helm-locate t)))
 
-  ;; needs more setup. does not work.
-  (use-package helm-fuzzier
-    :config
-    (helm-fuzzier-mode 1))))
+;; Makes the minibuffer options look like - Pick a fruit: { | apple | banana | cherry | date}
+;; (use-package ido-completing-read+
+;;   :init
+;;   (ido-mode 1)
+;;   (ido-everywhere 1)
+;;   :config
+;;   (ido-ubiquitous-mode 1))
 
-(use-package ido-completing-read+
-  :init
-  (ido-mode 1)
-  (ido-everywhere 1)
-  :config
-  (ido-ubiquitous-mode 1))
-
+;; Improves package menu
 (use-package paradox
   :config
   (paradox-enable))
@@ -193,7 +187,7 @@
 (define-key my-leader-map "TAB" 'spacemacs/alternate-buffer)
 (define-key my-leader-map "bN" 'spacemacs/new-empty-buffer)
 (define-key my-leader-map "bY" 'spacemacs/paste-clipboard-to-whole-buffer)
-(define-key my-leader-map "bb" 'cld/switch-to-buffer-list)
+(define-key my-leader-map "bb" 'helm-buffers-list)
 (define-key my-leader-map "bd" 'kill-buffer)
 (define-key my-leader-map "bn" 'next-buffer)
 (define-key my-leader-map "bp" 'previous-buffer)
@@ -216,7 +210,8 @@
 (define-key my-leader-map "fc" 'spacemacs/copy-file)
 (define-key my-leader-map "fed" (lambda () (interactive) (find-file-existing "~/.emacs.d/init.el")))
 (define-key my-leader-map "fer" (lambda () (interactive) (load-file "~/.emacs.d/init.el")))
-(define-key my-leader-map "ff" 'find-file)
+;; (define-key my-leader-map "ff" 'find-file)
+(define-key my-leader-map "ff" 'helm-locate)
 (define-key my-leader-map "fg" 'rgrep)
 (define-key my-leader-map "fl" 'find-file-literally)
 (define-key my-leader-map "fr" 'recentf-open-files)
@@ -236,7 +231,7 @@
 ;; git ------------------------------------------------------------------------
 (define-key my-leader-map "gs" 'magit-status)
 
-;; help -----------------------------------------------------------------------
+;; help/helm -----------------------------------------------------------------------
 (define-key my-leader-map "hdb" 'describe-bindings)
 (define-key my-leader-map "hdc" 'describe-char)
 (define-key my-leader-map "hdf" 'describe-function)
@@ -245,6 +240,7 @@
 (define-key my-leader-map "hdt" 'describe-theme)
 (define-key my-leader-map "hdv" 'describe-variable)
 (define-key my-leader-map "hn" 'view-emacs-news)
+(define-key my-leader-map "hkr" 'helm-show-kill-ring)
 
 ;; insert ---------------------------------------------------------------------
 (define-key my-leader-map "ida" 'cld/insert-day)
@@ -346,9 +342,10 @@
    (quote
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(electric-pair-mode t)
+ '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
  '(package-selected-packages
    (quote
-    (org-trello poker evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode ido-completing-read+ desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme helm-fuzzier helm-flx diminish use-package evil-mc paradox rainbow-delimiters anzu flycheck swiper magit ace-jump-mode helm which-key evil)))
+    (swiper-helm org-trello evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode ido-completing-read+ desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme helm-flx diminish use-package evil-mc paradox rainbow-delimiters flycheck swiper magit ace-jump-mode helm which-key evil)))
  '(safe-local-variable-values
    (quote
     ((org-todo-keyword-faces
