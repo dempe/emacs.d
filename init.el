@@ -90,12 +90,20 @@
 ;; I'm using c, because I cannot get <SPC SPC> (what Spacemacs uses) to work.
 (define-key my-leader-map "c" 'execute-extended-command)
 (use-package helm
-  :config
-  (helm-mode 1)
+  :demand t
+  :diminish
+  ;; :bind (("C-a" . (lambda () (interactive) (helm-toggle-visible-marks)))) I could not get this to work.  I had to free up C-SPC so I could use this.
+
+  :init
   (setq
    helm-always-two-windows t
    helm-split-window-default-side 'left)
+
+  :config
+  (helm-mode 1)
   (define-key my-leader-map "c" 'helm-M-x)
+  ;; (global-set-key (kbd "C-a") (lambda () (interactive) (helm-toggle-visible-marks)))
+
 
   ;; This package implements intelligent helm fuzzy sorting, provided by flx.
   (use-package helm-flx
@@ -211,7 +219,7 @@
 (define-key my-leader-map "fed" (lambda () (interactive) (find-file-existing "~/.emacs.d/init.el")))
 (define-key my-leader-map "fer" (lambda () (interactive) (load-file "~/.emacs.d/init.el")))
 ;; (define-key my-leader-map "ff" 'find-file)
-(define-key my-leader-map "ff" 'helm-locate)
+(define-key my-leader-map "ff" 'helm-find-files)
 (define-key my-leader-map "fg" 'rgrep)
 (define-key my-leader-map "fl" 'find-file-literally)
 (define-key my-leader-map "fr" 'recentf-open-files)
@@ -241,6 +249,7 @@
 (define-key my-leader-map "hdv" 'describe-variable)
 (define-key my-leader-map "hn" 'view-emacs-news)
 (define-key my-leader-map "hkr" 'helm-show-kill-ring)
+(define-key my-leader-map "hl" 'helm-locate)
 
 ;; insert ---------------------------------------------------------------------
 (define-key my-leader-map "ida" 'cld/insert-day)
