@@ -76,6 +76,7 @@
 (define-key my-leader-map "hkr" 'helm-show-kill-ring)
 (define-key my-leader-map "hl" 'helm-locate)
 (define-key my-leader-map "hpf" (lambda () (interactive) (helm-projectile-find-files)))
+(define-key my-leader-map "hm" 'helm-mini)
 (define-key my-leader-map "ho" 'helm-occur)
 
 ;; insertion ---------------------------------------------------------------------
