@@ -59,7 +59,15 @@
   :init
   (setq
    helm-always-two-windows t
+   helm-recentf-fuzzy-match t
+   helm-locate-fuzzy-match nil ;; locate fuzzy is worthless
+   helm-M-x-fuzzy-match t
+   helm-buffers-fuzzy-matching t
+   helm-semantic-fuzzy-match t
    helm-apropos-fuzzy-match t
+   helm-imenu-fuzzy-match t
+   helm-lisp-fuzzy-completion t
+   helm-completion-in-region-fuzzy-match t
    helm-split-window-default-side 'left)
 
   :config
