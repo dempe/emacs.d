@@ -85,6 +85,10 @@
   (define-key helm-map (kbd "<backtab>") #'helm-previous-line)
   (define-key my-leader-map "c"          'helm-M-x))
 
+(use-package ace-jump-helm-line
+  :config
+  (define-key helm-map (kbd "C-'") 'ace-jump-helm-line))
+
 (use-package ivy
   :diminish)
 
