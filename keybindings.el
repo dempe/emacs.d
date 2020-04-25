@@ -133,6 +133,7 @@
 
 ;; toggle, til, themes ---------------------------------------------------------
 (define-key my-leader-map "til" 'cld/open-til)
+(define-key my-leader-map "tc" 'counsel-load-theme)
 (define-key my-leader-map "td" 'cld/load-spacemacs-dark-theme)
 (define-key my-leader-map "tl" (lambda () (interactive) (load-theme 'spacemacs-light t)))
 (define-key my-leader-map "tsl" (lambda () (interactive) (load-theme 'solarized-light t)))
