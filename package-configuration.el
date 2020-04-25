@@ -76,7 +76,7 @@
   :config
   (helm-mode 1)
 
-  ;; remap keys
+  ;; Remap keys.  Helm default mappings can be found here https://github.com/emacs-helm/helm/blob/0745fa347de4a2a83394dee8da99b092992b8d9b/helm.el
   ;; (global-set-key (kbd "C-a") (lambda () (interactive) (helm-toggle-visible-marks)))
   (define-key helm-map (kbd "C-a")       #'helm-select-action)
   (define-key helm-map (kbd "C-n")       #'helm-next-page)
@@ -84,6 +84,9 @@
   (define-key helm-map (kbd "TAB")       #'helm-next-line)
   (define-key helm-map (kbd "<backtab>") #'helm-previous-line)
   (define-key my-leader-map "c"          'helm-M-x))
+
+(use-package ivy
+  :diminish)
 
 ;; Improves package menu
 (use-package paradox
