@@ -22,7 +22,9 @@
 (use-package avy
   :ensure t
   :config
-  (setq avy-keys (number-sequence ?a ?z)))    ; Any lower-case letter a-z.
+  (setq
+   avy-keys (number-sequence ?a ?z)           ; Any lower-case letter a-z.
+   avy-background t))                         ; Grey-out background when searching
 
 (use-package darkroom
   :ensure t
