@@ -34,138 +34,11 @@
 (set-frame-parameter (selected-frame) 'alpha '(100 50))
 (add-to-list 'default-frame-alist '(alpha 100 50))
 
-(scroll-bar-mode -1)                           ; Hide scrollbars
-(load-file "~/.emacs.d/customs.el")            ; Load automatically set custom values
-(load-file "~/.emacs.d/helper-functions.el")   ; Load helper functions
-(load-file "~/.emacs.d/journal-functions.el")  ; Load helper functions for journaling
-
-
-;; ~~~~~~~~~~~~~~~~~~~~~~~ PACKAGE CONFIGURATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")
-                         ("org" . "http://orgmode.org/elpa/")))
-(require 'package)
-(package-initialize)
-(package-refresh-contents 1)                  ; Refresh packages asynchronously
-
-;; Setup use-package
-(eval-when-compile
-  (require 'use-package))
-(setq use-package-compute-statistics 1)       ; Generate a report of load times with M-x use-package-report
-
-(load-file "~/.emacs.d/evil.el")              ; Load Evil configurations
-
-(use-package avy
-  :ensure t
-  :config
-  (setq avy-keys (number-sequence ?a ?z)))    ; Any lower-case letter a-z.
-
-(use-package darkroom
-  :ensure t
-  :demand t
-  :config
-  ;; (setq darkroom-margins .25)
-  (setq darkroom-text-scale-increase 1))
-
-(use-package desktop+
-  :diminish
-  :config
-  :demand t
-  :config
-  (desktop-save-mode 1))
-
-(use-package diminish
-  :config
-  (diminish 'undo-tree-mode)
-  (diminish 'eldoc-mode))
-
-(use-package flycheck
-  :diminish
-  :config
-  (global-flycheck-mode)
-  (define-key my-leader-map "en" 'next-error)
-  (define-key my-leader-map "ep" 'previous-error))
-
-;; Bind <SPC c> to the M-x function (with Helm).
-;; I'm using c, because I cannot get <SPC SPC> (what Spacemacs uses) to work.
-(define-key my-leader-map "c" 'execute-extended-command)
-(use-package helm
-  :demand t
-  :diminish
-  ;; :bind (("C-a" . (lambda () (interactive) (helm-toggle-visible-marks)))) I could not get this to work.  I had to free up C-SPC so I could use this.
-
-  :init
-  (setq
-   helm-always-two-windows t
-   helm-apropos-fuzzy-match t
-   helm-split-window-default-side 'left)
-
-  :config
-  (helm-mode 1)
-  ;; (global-set-key (kbd "C-a") (lambda () (interactive) (helm-toggle-visible-marks)))
-  (define-key my-leader-map "c" 'helm-M-x))
-
-;; Makes the minibuffer options look like - Pick a fruit: { | apple | banana | cherry | date}
-;; (use-package ido-completing-read+
-;;   :init
-;;   (ido-mode 1)
-;;   (ido-everywhere 1)
-;;   :config
-;;   (ido-ubiquitous-mode 1))
-
-;; Improves package menu
-(use-package paradox
-  :config
-  (paradox-enable))
-
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
-
-(use-package solarized-theme
-  :init
-  ;; make the fringe stand out from the background
-  (setq solarized-distinct-fringe-background t)
-
-  ;; Don't change the font for some headings and titles
-  (setq solarized-use-variable-pitch nil)
-
-  ;; make the modeline high contrast
-  (setq solarized-high-contrast-mode-line nil)
-
-  ;; Use less bolding
-  (setq solarized-use-less-bold t)
-
-  ;; Use more italics
-  (setq solarized-use-more-italic t)
-
-  ;; Avoid all font-size changes
-  (setq solarized-height-minus-1 1.0)
-  (setq solarized-height-plus-1 1.0)
-  (setq solarized-height-plus-2 1.0)
-  (setq solarized-height-plus-3 1.0)
-  (setq solarized-height-plus-4 1.0)
-
-  :config
-  (define-key my-leader-map "ltsl" (lambda () (interactive) (load-theme 'solarized-light t)))
-  (define-key my-leader-map "ltsd" (lambda () (interactive) (load-theme 'solarized-dark t))))
-
-(use-package spacemacs-theme
-  :defer t
-  :init
-  (setq spacemacs-theme-comment-bg nil)
-  (setq spacemacs-theme-org-bold nil)
-  (setq spacemacs-theme-org-height nil)
-  (setq spacemacs-theme-org-highlight nil)
-  (setq spacemacs-theme-org-priority-bold nil)
-
-  (define-key my-leader-map "ltl" (lambda () (interactive) (load-theme 'spacemacs-light t)))
-  (define-key my-leader-map "ltd" 'cld/load-spacemacs-dark-theme))
-
-(use-package which-key
-  :diminish
-  :config
-  (which-key-setup-side-window-right-bottom)
-  (which-key-mode))
+(scroll-bar-mode -1)                              ; Hide scrollbars
+(load-file "~/.emacs.d/customs.el")               ; Load automatically set custom values
+(load-file "~/.emacs.d/package_configuration.el") ; Plugin related configs
+(load-file "~/.emacs.d/helper-functions.el")      ; Load helper functions
+(load-file "~/.emacs.d/journal-functions.el")     ; Load helper functions for journaling
 
 ;; (cld/load-spacemacs-dark-theme)
 
@@ -202,17 +75,20 @@
 ;; dired ----------------------------------------------------------------------
 (define-key my-leader-map "d" 'dired-mode)
 
+;; errors ----------------------------------------------------------------------
+(define-key my-leader-map "en" 'next-error)
+(define-key my-leader-map "ep" 'previous-error)
+
 ;; files ----------------------------------------------------------------------
 (define-key my-leader-map "fD" 'spacemacs/delete-current-buffer-file)
 (define-key my-leader-map "fS" 'evil-write-all)
 (define-key my-leader-map "fc" 'spacemacs/copy-file)
 (define-key my-leader-map "fed" (lambda () (interactive) (find-file-existing "~/.emacs.d/init.el")))
-(define-key my-leader-map "fer" (lambda () (interactive) (load-file "~/.emacs.d/init.el")))
+(define-key my-leader-map "fr" (lambda () (interactive) (load-file "~/.emacs.d/init.el")))
 ;; (define-key my-leader-map "ff" 'find-file)
 (define-key my-leader-map "ff" 'helm-find-files)
 (define-key my-leader-map "fg" 'rgrep)
 (define-key my-leader-map "fl" 'find-file-literally)
-(define-key my-leader-map "fr" 'recentf-open-files)
 (define-key my-leader-map "fs" 'save-buffer)
 (define-key my-leader-map "fvd" 'add-dir-local-variable)
 (define-key my-leader-map "fvf" 'add-file-local-variable)
@@ -293,11 +169,16 @@
 (define-key my-leader-map "ost" 'org-set-tags-command)
 (define-key my-leader-map "ot" 'org-todo)
 
-;; toggle, til ---------------------------------------------------------
+;; toggle, til, themes ---------------------------------------------------------
 (define-key my-leader-map "til" 'cld/open-til)
+(define-key my-leader-map "td" 'cld/load-spacemacs-dark-theme)
+(define-key my-leader-map "tl" (lambda () (interactive) (load-theme 'spacemacs-light t)))
+(define-key my-leader-map "tsl" (lambda () (interactive) (load-theme 'solarized-light t)))
+(define-key my-leader-map "tsd" (lambda () (interactive) (load-theme 'solarized-dark t)))
 (define-key my-leader-map "tn" 'cld/toggle-line-numbers)
 (define-key my-leader-map "tw" 'whitespace-mode)
 
+;; undo-tree ---------------------------------------------------------
 (define-key my-leader-map "ut" 'undo-tree-visualize)
 
 ;; windows ---------------------------------------------------------
