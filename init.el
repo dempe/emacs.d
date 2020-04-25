@@ -36,7 +36,7 @@
 
 (scroll-bar-mode -1)                              ; Hide scrollbars
 (load-file "~/.emacs.d/customs.el")               ; Load automatically set custom values
-(load-file "~/.emacs.d/package_configuration.el") ; Plugin related configs
+(load-file "~/.emacs.d/package-configuration.el") ; Plugin related configs
 (load-file "~/.emacs.d/helper-functions.el")      ; Load helper functions
 (load-file "~/.emacs.d/journal-functions.el")     ; Load helper functions for journaling
 (load-file "~/.emacs.d/keybindings.el")           ; Keybindings related configs
