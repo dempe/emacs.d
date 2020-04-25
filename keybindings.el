@@ -64,6 +64,7 @@
 (define-key my-leader-map "gs" 'magit-status)
 
 ;; help, helm -----------------------------------------------------------------------
+(define-key my-leader-map "ha" 'helm-apropos)
 (define-key my-leader-map "hdb" 'describe-bindings)
 (define-key my-leader-map "hdc" 'describe-char)
 (define-key my-leader-map "hdf" 'describe-function)
@@ -71,13 +72,11 @@
 (define-key my-leader-map "hdp" 'describe-package)
 (define-key my-leader-map "hdt" 'describe-theme)
 (define-key my-leader-map "hdv" 'describe-variable)
-(define-key my-leader-map "hn" 'view-emacs-news)
-(define-key my-leader-map "ha" 'helm-apropos)
 (define-key my-leader-map "hkr" 'helm-show-kill-ring)
 (define-key my-leader-map "hl" 'helm-locate)
-(define-key my-leader-map "hpf" (lambda () (interactive) (helm-projectile-find-files)))
 (define-key my-leader-map "hm" 'helm-mini)
 (define-key my-leader-map "ho" 'helm-occur)
+(define-key my-leader-map "hp" 'helm-projectile)
 
 ;; insertion ---------------------------------------------------------------------
 (define-key my-leader-map "ida" 'cld/insert-day)
