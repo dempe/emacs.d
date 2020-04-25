@@ -221,7 +221,7 @@
  '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
  '(package-selected-packages
    (quote
-    (avy helm-projectile swiper-helm org-trello evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode ido-completing-read+ desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme diminish use-package evil-mc paradox rainbow-delimiters flycheck swiper magit helm which-key evil)))
+    (avy helm-projectile swiper-helm org-trello evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme diminish use-package evil-mc paradox rainbow-delimiters flycheck swiper magit helm which-key evil)))
  '(safe-local-variable-values
    (quote
     ((org-todo-keyword-faces

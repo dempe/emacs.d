@@ -67,14 +67,6 @@
   ;; (global-set-key (kbd "C-a") (lambda () (interactive) (helm-toggle-visible-marks)))
   (define-key my-leader-map "c" 'helm-M-x))
 
-;; Makes the minibuffer options look like - Pick a fruit: { | apple | banana | cherry | date}
-;; (use-package ido-completing-read+
-;;   :init
-;;   (ido-mode 1)
-;;   (ido-everywhere 1)
-;;   :config
-;;   (ido-ubiquitous-mode 1))
-
 ;; Improves package menu
 (use-package paradox
   :config
