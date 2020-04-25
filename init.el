@@ -31,8 +31,8 @@
 (put 'narrow-to-region 'disabled nil)
 
 ;; Set transparency
-;; (set-frame-parameter (selected-frame) 'alpha '(85 50))
-;; (add-to-list 'default-frame-alist '(alpha 85 50))
+(set-frame-parameter (selected-frame) 'alpha '(100 50))
+(add-to-list 'default-frame-alist '(alpha 100 50))
 
 (scroll-bar-mode -1)                           ; Hide scrollbars
 (load-file "~/.emacs.d/customs.el")            ; Load automatically set custom values
@@ -55,10 +55,10 @@
 
 (load-file "~/.emacs.d/evil.el")              ; Load Evil configurations
 
-(use-package ace-jump-mode
-  :after evil                                 ; Should make this order-agnostic, but this does not appear to work
-  :init
-  (define-key my-leader-map "aj" 'ace-jump-mode))
+(use-package avy
+  :ensure t
+  :config
+  (setq avy-keys (number-sequence ?a ?z)))    ; Any lower-case letter a-z.
 
 (use-package darkroom
   :ensure t
@@ -97,20 +97,13 @@
   :init
   (setq
    helm-always-two-windows t
+   helm-apropos-fuzzy-match t
    helm-split-window-default-side 'left)
 
   :config
   (helm-mode 1)
-  (define-key my-leader-map "c" 'helm-M-x)
   ;; (global-set-key (kbd "C-a") (lambda () (interactive) (helm-toggle-visible-marks)))
-
-
-  ;; This package implements intelligent helm fuzzy sorting, provided by flx.
-  (use-package helm-flx
-    :config
-    (helm-flx-mode 1)
-    (setq helm-flx-for-helm-find-files t
-          helm-flx-for-helm-locate t)))
+  (define-key my-leader-map "c" 'helm-M-x))
 
 ;; Makes the minibuffer options look like - Pick a fruit: { | apple | banana | cherry | date}
 ;; (use-package ido-completing-read+
@@ -178,20 +171,17 @@
 
 ;; ~~~~~~~~~~~~~~~~~~~~~~~ KEYBINDINGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-;; Most of the following keybindings are taken from the Spacemacs project.
+;; Many of the following keybindings are taken from the Spacemacs project.
 ;; They can be found here: https://github.com/syl20bnr/spacemacs/blob/c7a103a772d808101d7635ec10f292ab9202d9ee/layers/%2Bdistributions/spacemacs-base/keybindings.el
 ;; Information about keybinding with Emacs and Evil can be found here: https://github.com/noctuid/evil-guide
 
-;; shell command  -------------------------------------------------------------
 (define-key my-leader-map "!" 'shell-command)
 
-;; applications ---------------------------------------------------------------
-(define-key my-leader-map "aP" 'proced)
-(define-key my-leader-map "ac" 'calc-dispatch)
-(define-key my-leader-map "ap" 'list-processes)
-(define-key my-leader-map "au" 'undo-tree-visualize)
+;; avy ----------------------------------------------------------------------
+(define-key my-leader-map "ac" 'avy-goto-char-2)
+(define-key my-leader-map "al" 'avy-goto-line)
 
-;; buffers --------------------------------------------------------------------
+;; buffers ----------------------------------------------------------------------
 (define-key my-leader-map "TAB" 'spacemacs/alternate-buffer)
 (define-key my-leader-map "bN" 'spacemacs/new-empty-buffer)
 (define-key my-leader-map "bY" 'spacemacs/paste-clipboard-to-whole-buffer)
@@ -229,17 +219,13 @@
 (define-key my-leader-map "fvp" 'add-file-local-variable-prop-line)
 (define-key my-leader-map "fy" 'spacemacs/show-and-copy-buffer-filename)
 
-;; evaluation ------------------------------------------------------------------
+;; evaluation  ------------------------------------------------------------------------
 (define-key my-leader-map "eb" 'eval-buffer)
-
-;; format ---------------------------------------------------------------------
-(define-key my-leader-map "jo" 'open-line)
-(define-key my-leader-map "ji" 'cld/indent-region-or-buffer) ; note: spacemacs uses j=
 
 ;; git ------------------------------------------------------------------------
 (define-key my-leader-map "gs" 'magit-status)
 
-;; help/helm -----------------------------------------------------------------------
+;; help, helm -----------------------------------------------------------------------
 (define-key my-leader-map "hdb" 'describe-bindings)
 (define-key my-leader-map "hdc" 'describe-char)
 (define-key my-leader-map "hdf" 'describe-function)
@@ -248,10 +234,13 @@
 (define-key my-leader-map "hdt" 'describe-theme)
 (define-key my-leader-map "hdv" 'describe-variable)
 (define-key my-leader-map "hn" 'view-emacs-news)
+(define-key my-leader-map "ha" 'helm-apropos)
 (define-key my-leader-map "hkr" 'helm-show-kill-ring)
 (define-key my-leader-map "hl" 'helm-locate)
+(define-key my-leader-map "hpf" (lambda () (interactive) (helm-projectile-find-files)))
+(define-key my-leader-map "ho" 'helm-occur)
 
-;; insert ---------------------------------------------------------------------
+;; insertion ---------------------------------------------------------------------
 (define-key my-leader-map "ida" 'cld/insert-day)
 (define-key my-leader-map "idl" 'cld/insert-date-long)
 (define-key my-leader-map "idt" 'cld/insert-datetime)
@@ -263,31 +252,25 @@
 (define-key my-leader-map "is" 'cld/insert-space)
 (define-key my-leader-map "it" 'cld/insert-time)
 
-;; journal --------------------------------------------------------------------
-(define-key my-leader-map "jl" 'cld/open-latest-journal-post)
-(define-key my-leader-map "jp" 'cld/make-new-journal-post)
-(define-key my-leader-map "js" 'cld/insert-sidenote)
-
-;; navigation/jumping ---------------------------------------------------------
+;; navigation, jumping, journal ---------------------------------------------------------
 (define-key my-leader-map "j0" 'spacemacs/push-mark-and-goto-beginning-of-line)
 (define-key my-leader-map "j$" 'spacemacs/push-mark-and-goto-end-of-line)
 (define-key my-leader-map "jf" 'find-function)
+(define-key my-leader-map "jo" 'open-line)                   ; insert newline above
+(define-key my-leader-map "ji" 'cld/indent-region-or-buffer) ; note: spacemacs uses j=
+(define-key my-leader-map "jl" 'cld/open-latest-journal-post)
+(define-key my-leader-map "jp" 'cld/make-new-journal-post)
+(define-key my-leader-map "js" 'cld/insert-sidenote)
 (define-key my-leader-map "jv" 'find-variable)
 
-;; markdown -------------------------------------------------------------------
-;; TODO
-
-;; narrow & widen -------------------------------------------------------------
+;; narrowing ---------------------------------------------------------
 (define-key my-leader-map "nf" 'narrow-to-defun)
 (define-key my-leader-map "nos" 'org-narrow-to-subtree)
 (define-key my-leader-map "np" 'narrow-to-page)
 (define-key my-leader-map "nr" 'narrow-to-region)
 (define-key my-leader-map "nw" 'widen)
 
-;; open  -----------------------------------------------------------------------
-(define-key my-leader-map "til" 'cld/open-til)
-
-;; org-mode --------------------------------------------------------------------
+;; org-mode ---------------------------------------------------------
 (define-key my-leader-map "ob" 'org-backward-heading-same-level)
 (define-key my-leader-map "ocb" 'cld/insert-org-code-block)
 (define-key my-leader-map "oci" 'org-clock-in)
@@ -310,11 +293,14 @@
 (define-key my-leader-map "ost" 'org-set-tags-command)
 (define-key my-leader-map "ot" 'org-todo)
 
-;; toggle ---------------------------------------------------------------------
+;; toggle, til ---------------------------------------------------------
+(define-key my-leader-map "til" 'cld/open-til)
 (define-key my-leader-map "tn" 'cld/toggle-line-numbers)
 (define-key my-leader-map "tw" 'whitespace-mode)
 
-;; windows --------------------------------------------------------------------
+(define-key my-leader-map "ut" 'undo-tree-visualize)
+
+;; windows ---------------------------------------------------------
 (define-key my-leader-map "w=" 'balance-windows)
 (define-key my-leader-map "wF" 'make-frame)
 (define-key my-leader-map "wH" 'evil-window-move-far-left)
@@ -325,7 +311,6 @@
 (define-key my-leader-map "wv" 'spacemacs/split-window-right-and-focus)
 (define-key my-leader-map "ww" 'other-window)
 
-;; text -----------------------------------------------------------------------
 (define-key my-leader-map "xaa" 'align)
 (define-key my-leader-map "xac" 'align-current)
 (define-key my-leader-map "xc" 'count-region)
@@ -342,6 +327,7 @@
 
 (provide 'init.el)
 ;;; init.el ends here
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -354,7 +340,7 @@
  '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
  '(package-selected-packages
    (quote
-    (swiper-helm org-trello evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode ido-completing-read+ desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme helm-flx diminish use-package evil-mc paradox rainbow-delimiters flycheck swiper magit ace-jump-mode helm which-key evil)))
+    (avy helm-projectile swiper-helm org-trello evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode ido-completing-read+ desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme diminish use-package evil-mc paradox rainbow-delimiters flycheck swiper magit helm which-key evil)))
  '(safe-local-variable-values
    (quote
     ((org-todo-keyword-faces
