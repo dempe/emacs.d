@@ -54,26 +54,36 @@
 (use-package helm
   :demand t
   :diminish
-  ;; :bind (("C-a" . (lambda () (interactive) (helm-toggle-visible-marks)))) I could not get this to work.  I had to free up C-SPC so I could use this.
-
   :init
   (setq
-   helm-always-two-windows t
-   helm-recentf-fuzzy-match t
-   helm-locate-fuzzy-match nil ;; locate fuzzy is worthless
-   helm-M-x-fuzzy-match t
-   helm-buffers-fuzzy-matching t
-   helm-semantic-fuzzy-match t
-   helm-apropos-fuzzy-match t
-   helm-imenu-fuzzy-match t
-   helm-lisp-fuzzy-completion t
+   helm-always-two-windows               t
+   helm-recentf-fuzzy-match              t
+   helm-locate-fuzzy-match               nil ; locate fuzzy is worthless
+   helm-M-x-fuzzy-match                  t
+   helm-buffers-fuzzy-matching           t
+   helm-semantic-fuzzy-match             t
+   helm-apropos-fuzzy-match              t
+   helm-imenu-fuzzy-match                t
+   helm-lisp-fuzzy-completion            t
    helm-completion-in-region-fuzzy-match t
-   helm-split-window-default-side 'left)
+   helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+   helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+   helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+   helm-ff-file-name-history-use-recentf t
+   helm-echo-input-in-header-line        t
+   helm-split-window-default-side        'left)
 
   :config
   (helm-mode 1)
+
+  ;; remap keys
   ;; (global-set-key (kbd "C-a") (lambda () (interactive) (helm-toggle-visible-marks)))
-  (define-key my-leader-map "c" 'helm-M-x))
+  (define-key helm-map (kbd "C-a")       #'helm-select-action)
+  (define-key helm-map (kbd "C-n")       #'helm-next-page)
+  (define-key helm-map (kbd "C-p")       #'helm-previous-page)
+  (define-key helm-map (kbd "TAB")       #'helm-next-line)
+  (define-key helm-map (kbd "<backtab>") #'helm-previous-line)
+  (define-key my-leader-map "c"          'helm-M-x))
 
 ;; Improves package menu
 (use-package paradox
