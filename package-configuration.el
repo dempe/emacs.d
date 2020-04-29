@@ -74,18 +74,28 @@
    helm-ff-file-name-history-use-recentf t
    helm-echo-input-in-header-line        t
    helm-split-window-default-side        'left)
-
-  :config
   (helm-mode 1)
 
+  :config
+
+  ;; Adding these functions here until they become available in the main source in version 3.6.1
+  (defun helm-toggle-visible-mark-forward ()
+    (interactive)
+    (helm-toggle-visible-mark 1))
+
+  (defun helm-toggle-visible-mark-backward ()
+    (interactive)
+    (helm-toggle-visible-mark -1))
+
   ;; Remap keys.  Helm default mappings can be found here https://github.com/emacs-helm/helm/blob/0745fa347de4a2a83394dee8da99b092992b8d9b/helm.el
-  ;; (global-set-key (kbd "C-a") (lambda () (interactive) (helm-toggle-visible-marks)))
-  (define-key helm-map (kbd "C-a")       #'helm-select-action)
-  (define-key helm-map (kbd "C-n")       #'helm-next-page)
-  (define-key helm-map (kbd "C-p")       #'helm-previous-page)
-  (define-key helm-map (kbd "TAB")       #'helm-next-line)
-  (define-key helm-map (kbd "<backtab>") #'helm-previous-line)
-  (define-key my-leader-map "c"          'helm-M-x))
+  (define-key helm-map (kbd "C-a")         #'helm-select-action)
+  (define-key helm-map (kbd "C-n")         #'helm-next-page)
+  (define-key helm-map (kbd "C-p")         #'helm-previous-page)
+  (define-key helm-map (kbd "TAB")         #'helm-next-line)
+  (define-key helm-map (kbd "<backtab>")   #'helm-previous-line)
+  (define-key helm-map (kbd "<C-tab>")     #'helm-toggle-visible-mark-forward)
+  (define-key helm-map (kbd "<C-S-tab>")   #'helm-toggle-visible-mark-backward)
+  (define-key my-leader-map "c"            'helm-M-x))
 
 (use-package ace-jump-helm-line
   :config
@@ -140,3 +150,6 @@
   :config
   (which-key-setup-side-window-right-bottom)
   (which-key-mode))
+
+(provide 'package-configuration)
+;;; package-configuration.el ends here
