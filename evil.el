@@ -14,27 +14,8 @@
   (add-to-list 'evil-emacs-state-modes 'flycheck-error-list-mode)
   (add-to-list 'evil-emacs-state-modes 'term-mode)
   (add-to-list 'evil-emacs-state-modes 'osx-dictionary-mode)
-  (add-to-list 'evil-emacs-state-modes 'recentf-dialog)
 
 	(evil-add-hjkl-bindings osx-dictionary-mode-map 'emacs
-    (kbd "0")       'evil-beginning-of-line
-    (kbd "$")       'evil-end-of-line
-    (kbd "/")       'evil-search-forward
-    (kbd "b")       'evil-backward-word-begin
-    (kbd "B")       'evil-backward-WORD-begin
-    (kbd "E")       'evil-forward-WORD-end
-    (kbd "e")       'evil-forward-word-end
-    (kbd "g_")      'evil-last-non-blank
-    (kbd "gg")      'evil-goto-first-line
-    (kbd "G")       'evil-goto-last-line
-    (kbd "n")       'evil-search-next
-    (kbd "N")       'evil-search-previous
-    (kbd "W")       'evil-forward-WORD-begin
-    (kbd "w")       'evil-forward-word-begin
-    (kbd "C-d")     'evil-scroll-down
-    (kbd "C-u")     'evil-scroll-up)
-
-  (evil-add-hjkl-bindings recentf-dialog-map 'emacs
     (kbd "0")       'evil-beginning-of-line
     (kbd "$")       'evil-end-of-line
     (kbd "/")       'evil-search-forward
