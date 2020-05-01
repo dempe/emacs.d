@@ -22,6 +22,7 @@
 (setq menu-bar-mode nil)
 (setq blink-cursor-mode nil)
 (setq electric-pair-mode t)
+(setq make-backup-files nil)
 
 ;; Setup tabs
 (setq electric-indent-mode t)
