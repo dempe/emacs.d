@@ -101,6 +101,17 @@
 (define-key my-leader-map "js" 'cld/insert-sidenote)
 (define-key my-leader-map "jv" 'find-variable)
 
+;; markdown ---------------------------------------------------------
+(define-key my-leader-map "mb" 'markdown-insert-bold)
+(define-key my-leader-map "mc" 'markdown-insert-code)
+(define-key my-leader-map "mf" 'markdown-insert-footnote)
+(define-key my-leader-map "mi" 'markdown-insert-italic)
+(define-key my-leader-map "ml" 'markdown-insert-link)
+(define-key my-leader-map "mn" 'markdown-outline-next)
+(define-key my-leader-map "mp" 'markdown-outline-previous)
+(define-key my-leader-map "mq" 'markdown-insert-blockquote)
+(define-key my-leader-map "mt" 'markdown-insert-blockquote)
+
 ;; narrowing ---------------------------------------------------------
 (define-key my-leader-map "nf" 'narrow-to-defun)
 (define-key my-leader-map "nos" 'org-narrow-to-subtree)
