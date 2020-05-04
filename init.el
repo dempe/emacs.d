@@ -35,6 +35,10 @@
 (set-frame-parameter (selected-frame) 'alpha '(100 50))
 (add-to-list 'default-frame-alist '(alpha 100 50))
 
+;; Make Dired stay in one buffer
+(define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
+(define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  ; was dired-up-directory
+
 (scroll-bar-mode -1)                              ; Hide scrollbars
 (load-file "~/.emacs.d/customs.el")               ; Load automatically set custom values
 (load-file "~/.emacs.d/package-configuration.el") ; Plugin related configs
@@ -59,7 +63,7 @@
  '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
  '(package-selected-packages
    (quote
-    (ace-jump-helm-line avy helm-projectile swiper-helm org-trello evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme diminish use-package evil-mc paradox rainbow-delimiters flycheck swiper magit helm which-key evil)))
+    (dired-narrow ace-jump-helm-line avy helm-projectile swiper-helm org-trello evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme diminish use-package evil-mc paradox rainbow-delimiters flycheck swiper magit helm which-key evil)))
  '(safe-local-variable-values
    (quote
     ((org-todo-keyword-faces
@@ -80,3 +84,4 @@
  '(rainbow-delimiters-depth-7-face ((t (:inherit rainbow-delimiters-base-face :foreground "#ffffff"))))
  '(rainbow-delimiters-depth-8-face ((t (:inherit rainbow-delimiters-base-face :foreground "#00ff00"))))
  '(rainbow-delimiters-depth-9-face ((t (:inherit rainbow-delimiters-base-face :foreground "#89cffa")))))
+(put 'dired-find-alternate-file 'disabled nil)
