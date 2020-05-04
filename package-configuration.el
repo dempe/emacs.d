@@ -45,6 +45,13 @@
   (diminish 'undo-tree-mode)
   (diminish 'eldoc-mode))
 
+;; Inhibits the use of / for searching in dired buffer
+;; Narrow dired to match filter
+; (use-package dired-narrow
+;   :ensure t
+;   :bind (:map dired-mode-map
+;               ("?" . dired-narrow)))
+
 (use-package flycheck
   :diminish
   :config
@@ -148,7 +155,12 @@
 (use-package which-key
   :diminish
   :config
-  (which-key-setup-side-window-right-bottom)
+  (which-key-setup-side-window-right)
+  (setq which-key-allow-evil-operators t)
+  (setq which-key-show-docstrings t)
+  (setq which-key-show-remaining-keys t)
+  ; (setq which-key-side-window-max-width 1)
+  ; (setq which-key-side-window-max-height 1)
   (which-key-mode))
 
 (provide 'package-configuration)
