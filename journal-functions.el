@@ -46,6 +46,9 @@
 	"Make a new journal post interactively and open for editing."
 	(interactive)
 	(create-and-open-file (build-new-post-filename))
+  (goto-line 6)
+  (insert "\n")
+  (lambda () (interactive) (evil-insert))
 	(darkroom-mode))
 
 (defun cld/open-latest-journal-post ()
