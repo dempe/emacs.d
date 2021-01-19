@@ -24,6 +24,9 @@
 (setq electric-pair-mode t)
 (setq make-backup-files nil)
 
+;; Set font size
+(set-face-attribute 'default nil :height 150)
+
 ;; Setup tabs
 (setq electric-indent-mode t)
 (setq-default indent-tabs-mode nil)
@@ -31,13 +34,14 @@
 
 (put 'narrow-to-region 'disabled nil)
 
-;; Set transparency
-(set-frame-parameter (selected-frame) 'alpha '(100 50))
-(add-to-list 'default-frame-alist '(alpha 100 50))
+;; Set transparenc/* Hide location bar */
+
+;; (set-frame-parameter (selected-frame) 'alpha '(100 50))
+;; (add-to-list 'default-frame-alist '(alpha 100 50))
 
 ;; Make Dired stay in one buffer
-(define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
-(define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  ; was dired-up-directory
+; (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; was dired-advertised-find-file
+; (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))  ; was dired-up-directory
 
 (scroll-bar-mode -1)                              ; Hide scrollbars
 (load-file "~/.emacs.d/customs.el")               ; Load automatically set custom values
@@ -60,6 +64,7 @@
    (quote
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(electric-pair-mode t)
+ '(org-agenda-files (quote ("~/workspace/org-mode/questions.org")))
  '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
  '(package-selected-packages
    (quote
@@ -67,6 +72,10 @@
  '(safe-local-variable-values
    (quote
     ((org-todo-keyword-faces
+      ("TODO" . "red")
+      ("REVIEWED" . "yellow")
+      ("DONE" . "green"))
+     (org-todo-keyword-faces
       ("GOOD" . "green")
       ("OKAY" . "yellow")
       ("BAD" . "red"))))))

@@ -81,11 +81,6 @@
 	(interactive)
 	(insert " "))
 
-(defun cld/open-til ()
-  "Open `til.org`."
-  (interactive)
-  (find-file "~/Dropbox/org-mode/personal/til.org"))
-
 (defun cld/org-demote-header ()
 	"Demote a header and move to EOL."
 	(interactive)
@@ -115,13 +110,10 @@
   (beginning-of-line)
   (insert "* ")
 
-  ;; Insert tomorrow's date
   (insert
    (format-time-string
-    "%a %Y-%m-%d"
-    (time-add
-     (current-time)
-     (* 24 3600))))
+      "%a %Y-%m-%d"
+      (current-time)))
 
   ;; Insert progress indicators
   (insert " [/] [%]\n")
