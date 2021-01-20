@@ -97,7 +97,8 @@
 	"Insert new header below followed by a space."
 	(interactive)
   (org-insert-heading-respect-content)
-  (insert " "))
+  (insert " ")
+  (evil-insert-state))
 
 (defun cld/org-insert-checklist-item ()
   (interactive)

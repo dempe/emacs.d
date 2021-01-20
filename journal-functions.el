@@ -48,7 +48,7 @@
 	(create-and-open-file (build-new-post-filename))
   (goto-line 6)
   (insert "\n")
-  (lambda () (interactive) (evil-insert))
+  (evil-insert-state)
 	(darkroom-mode))
 
 (defun cld/open-latest-journal-post ()
