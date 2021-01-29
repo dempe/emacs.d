@@ -34,7 +34,7 @@
 	      (concat "---\ntitle:  "
 	    	  			(build-new-post-title))
 	      "\ndate:   ")
-      (format-time-string "%Y-%m-%dT%H:%M:%S"))
+      (format-time-string "%Y-%m-%d"))
 	  "\nlayout: post\n---\n"))
 
 (defun create-and-open-file (filename)
