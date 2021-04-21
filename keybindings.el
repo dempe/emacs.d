@@ -19,9 +19,9 @@
 ;; buffers ----------------------------------------------------------------------
 (define-key my-leader-map "TAB" 'spacemacs/alternate-buffer)
 (define-key my-leader-map "bN" 'spacemacs/new-empty-buffer)
-(define-key my-leader-map "bY" 'spacemacs/paste-clipboard-to-whole-buffer)
+;; (define-key my-leader-map "bY" 'spacemacs/paste-clipboard-to-whole-buffer)
 (define-key my-leader-map "bb" 'helm-buffers-list)
-(define-key my-leader-map "bd" 'kill-buffer)
+;; (define-key my-leader-map "bd" 'kill-buffer)
 (define-key my-leader-map "bn" 'next-buffer)
 (define-key my-leader-map "bp" 'previous-buffer)
 (define-key my-leader-map "br" (lambda () (interactive) (revert-buffer :ignore-auto :noconfirm)))
@@ -33,9 +33,6 @@
 ;;(define-key my-leader-map "cC" 'compile)
 ;;(define-key my-leader-map "ck" 'kill-compilation)
 ;;(define-key my-leader-map "cr" 'recompile)
-
-;; dired ----------------------------------------------------------------------
-(define-key my-leader-map "d" 'dired-mode)
 
 ;; errors ----------------------------------------------------------------------
 (define-key my-leader-map "en" 'next-error)
@@ -51,7 +48,7 @@
 (define-key my-leader-map "ff" 'helm-find-files)
 (define-key my-leader-map "fg" 'rgrep)
 (define-key my-leader-map "fl" 'find-file-literally)
-(define-key my-leader-map "fs" 'save-buffer)
+;; (define-key my-leader-map "fs" 'save-buffer)
 (define-key my-leader-map "fvd" 'add-dir-local-variable)
 (define-key my-leader-map "fvf" 'add-file-local-variable)
 (define-key my-leader-map "fvp" 'add-file-local-variable-prop-line)
@@ -61,7 +58,7 @@
 (define-key my-leader-map "eb" 'eval-buffer)
 
 ;; git ------------------------------------------------------------------------
-(define-key my-leader-map "gs" 'magit-status)
+;; (define-key my-leader-map "gs" 'magit-status)
 
 ;; help, helm -----------------------------------------------------------------------
 (define-key my-leader-map "ha" 'helm-apropos)
@@ -143,7 +140,6 @@
 (define-key my-leader-map "ot" 'org-todo)
 
 ;; toggle, til, themes ---------------------------------------------------------
-(define-key my-leader-map "til" 'cld/open-til)
 (define-key my-leader-map "tc" 'counsel-load-theme)
 (define-key my-leader-map "td" 'cld/load-spacemacs-dark-theme)
 (define-key my-leader-map "tl" (lambda () (interactive) (load-theme 'spacemacs-light t)))

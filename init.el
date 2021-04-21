@@ -61,24 +61,21 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
+   '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(electric-pair-mode t)
- '(org-agenda-files (quote ("~/workspace/org-mode/questions.org")))
+ '(org-agenda-files '("~/workspace/org-mode/questions.org"))
  '(org-trello-current-prefix-keybinding "C-c o" nil (org-trello))
  '(package-selected-packages
-   (quote
-    (dired-narrow ace-jump-helm-line avy helm-projectile swiper-helm org-trello evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme diminish use-package evil-mc paradox rainbow-delimiters flycheck swiper magit helm which-key evil)))
+   '(neotree tron-legacy-theme zetteldeft htmlize auto-indent-mode csv-mode dired-narrow ace-jump-helm-line avy helm-projectile swiper-helm org-trello evil-magit spacemacs-theme spotlight osx-dictionary markdown-mode desktop+ speed-type darkroom evil-surround evil-rsi evil-commentary solarized-theme diminish use-package evil-mc paradox rainbow-delimiters flycheck swiper magit helm which-key evil))
  '(safe-local-variable-values
-   (quote
-    ((org-todo-keyword-faces
+   '((org-todo-keyword-faces
       ("TODO" . "red")
       ("REVIEWED" . "yellow")
       ("DONE" . "green"))
      (org-todo-keyword-faces
       ("GOOD" . "green")
       ("OKAY" . "yellow")
-      ("BAD" . "red"))))))
+      ("BAD" . "red")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -94,3 +91,4 @@
  '(rainbow-delimiters-depth-8-face ((t (:inherit rainbow-delimiters-base-face :foreground "#00ff00"))))
  '(rainbow-delimiters-depth-9-face ((t (:inherit rainbow-delimiters-base-face :foreground "#89cffa")))))
 (put 'dired-find-alternate-file 'disabled nil)
+(put 'upcase-region 'disabled nil)
